@@ -1,0 +1,16 @@
+{
+  "name": "complexity-clash",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+     "start": "live-server public",
+      "dev": "live-server public --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ComplexityClash</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+  <header><h1>⚔️ ComplexityClash ⚔️</h1></header>
+
+  <section id="control-panel">
+    <div class="algorithm-selection">
+      <select id="algorithmA">
+        <option value="linear">Linear Search</option>
+        <option value="binary">Binary Search</option>
+        <option value="jump">Jump Search</option>
+        <option value="exponential">Exponential Search</option>
+        <option value="ternary">Ternary Search</option>
+        <option value="fibonacci">Fibonacci Search</option>
+        <option value="interpolation">Interpolation Search</option>
+        <option value="dfs">Depth First Search</option>
+        <option value="bfs">Breadth First Search</option>
+        <option value="hash">Hash Table Search</option>
+      </select>
+
+      <select id="algorithmB">
+        <option value="linear">Linear Search</option>
+        <option value="binary">Binary Search</option>
+        <option value="jump">Jump Search</option>
+        <option value="exponential">Exponential Search</option>
+        <option value="ternary">Ternary Search</option>
+        <option value="fibonacci">Fibonacci Search</option>
+        <option value="interpolation">Interpolation Search</option>
+        <option value="dfs">Depth First Search</option>
+        <option value="bfs">Breadth First Search</option>
+        <option value="hash">Hash Table Search</option>
+      </select>
+
+      <label for="dataSize">Data Size:</label>
+      <input type="number" id="dataSize" value="1000000" />
+      <button id="startBattle">Start Battle</button>
+    </div>
+  </section>
+
+  <section id="battle-arena">
+    <div class="algorithm-box" id="algoA-box">
+      <h2 id="algoA-title">Algorithm A</h2>
+      <div class="loading-bar-container" id="algoA-bar-container"></div>
+      <div class="stats" id="statsA"></div>
+    </div>
+
+    <div class="algorithm-box" id="algoB-box">
+      <h2 id="algoB-title">Algorithm B</h2>
+      <div class="loading-bar-container" id="algoB-bar-container"></div>
+      <div class="stats" id="statsB"></div>
+    </div>
+  </section>
+
+  <section id="code-display">
+    <div class="code-block">
+      <h3>Algorithm A Code</h3>
+      <pre><code id="codeA">// Code snippet</code></pre>
+    </div>
+    <div class="code-block">
+      <h3>Algorithm B Code</h3>
+      <pre><code id="codeB">// Code snippet</code></pre>
+    </div>
+  </section>
+
+  <section id="winner-display">
+    <h2 id="winnerText" style="text-align:center; font-weight:bold; margin-top:10px; opacity:0;">Winner will appear here</h2>
+  </section>
+
+  <script type="module" src="./scripts/index.js"></script>
+</body>
+</html>
