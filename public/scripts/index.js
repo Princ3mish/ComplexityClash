@@ -62,8 +62,8 @@ async function startBattle() {
   ]);
 
   // Show stats
-  document.getElementById('statsA').textContent = `⏱ ${capitalize(algoA)} took ${timeA.toFixed(2)} ms`;
-  document.getElementById('statsB').textContent = `⏱ ${capitalize(algoB)} took ${timeB.toFixed(2)} ms`;
+  document.getElementById('statsA').textContent = `⏱ ${capitalize(algoA)} took ${formatTime(timeA)}`;
+  document.getElementById('statsB').textContent = `⏱ ${capitalize(algoB)} took ${formatTime(timeB)}`;
 
   // Display winner
   showWinner(timeA, timeB, algoA, algoB);
@@ -130,10 +130,36 @@ function animateBar(id, duration) {
 
 function showWinner(t1, t2, a1, a2) {
   const w = document.getElementById('winnerText');
+  const winnerDisplay = document.getElementById('winner-display');
+  // Set winner text
   if (t1 < t2) w.textContent = `🏆 ${capitalize(a1)} wins!`;
   else if (t2 < t1) w.textContent = `🏆 ${capitalize(a2)} wins!`;
   else w.textContent = `🤝 It's a tie!`;
+
+  // Pop out winner in center and blur background
+  w.classList.add('revealed');
+  winnerDisplay.classList.add('winner-center');
   w.style.opacity = 1;
+  // Blur all main content except winner
+  document.querySelector('header').classList.add('blurred');
+  document.getElementById('control-panel').classList.add('blurred');
+  document.getElementById('battle-arena').classList.add('blurred');
+  document.getElementById('code-display').classList.add('blurred');
+  const footer = document.getElementById('main-footer');
+  if (footer) footer.classList.add('blurred');
+
+  // After 2.5s, remove blur and move winner to bottom right
+  setTimeout(() => {
+    winnerDisplay.classList.remove('winner-center');
+    document.querySelector('header').classList.remove('blurred');
+    document.getElementById('control-panel').classList.remove('blurred');
+    document.getElementById('battle-arena').classList.remove('blurred');
+    document.getElementById('code-display').classList.remove('blurred');
+    if (footer) footer.classList.remove('blurred');
+    // Winner stays visible in bottom right
+    w.classList.add('revealed');
+    w.style.opacity = 1;
+  }, 2500);
 }
 
 function capitalize(str) {
@@ -144,4 +170,12 @@ function capitalize(str) {
 export async function highlightStep(index, value) {
   console.log(`Step: index ${index}, value ${value}`);
   await new Promise(res => setTimeout(res, 50));
+}
+
+// Helper to format time with enough precision to avoid 0.0ms
+function formatTime(ms) {
+  if (ms >= 1) return ms.toFixed(2) + ' ms';
+  if (ms >= 0.01) return ms.toFixed(4) + ' ms';
+  if (ms >= 0.0001) return ms.toFixed(6) + ' ms';
+  return ms.toExponential(2) + ' ms';
 }
